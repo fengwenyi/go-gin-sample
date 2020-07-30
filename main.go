@@ -1,6 +1,6 @@
 package main
 
-import "go-gin-sample/response"
+import "go-gin-sample/middleware"
 
 func main() {
 	//start.StartApp()
@@ -13,5 +13,7 @@ func main() {
 
 	//response.Json()
 
-	response.Html()
+	//response.Html()
+
+	middleware.Test()
 }
