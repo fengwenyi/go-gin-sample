@@ -1,7 +1,5 @@
 package main
 
-import "go-gin-sample/middleware"
-
 func main() {
 	//start.StartApp()
 
@@ -15,5 +13,13 @@ func main() {
 
 	//response.Html()
 
-	middleware.Test()
+	//middleware.Test()
+
+	//mysql.TestCreateTable()
+	// 重复执行，报错：
+	//2020/07/30 23:39:48 Error 1050: Table 'person' already exists
+
+	//mysql.TestInsert()
+
+	//mysql.TestSelect()
 }

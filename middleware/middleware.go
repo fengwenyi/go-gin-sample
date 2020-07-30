@@ -29,11 +29,8 @@ func RequestInfos() gin.HandlerFunc {
 
 		fmt.Println("-----------------------------------------")
 
-		//response := context.Request.Response
-		//status := response.Status
-		//code := response.StatusCode
-		//fmt.Println("响应状态：", status)
-		//fmt.Println("响应状态码：", code)
+		statusCode := context.Writer.Status()
+		fmt.Println("响应状态码：", statusCode)
 		cost := time.Since(startTime)
 		fmt.Println("耗时：", cost)
 		fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
@@ -44,6 +41,24 @@ func Test() {
 	engine := gin.Default()
 	engine.Use(RequestInfos())
 	engine.Handle("GET", "/hello", func(context *gin.Context) {
+
+		name, _ := context.GetQuery("name")
+
+		fmt.Println("Hello")
+
+		_, _ = context.Writer.Write([]byte("Hello " + name))
+	})
+	err := engine.Run()
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+}
+
+func Test2() {
+	engine := gin.Default()
+	// 只有这一个函数有效
+	engine.Handle("GET", "/hello", RequestInfos(), func(context *gin.Context) {
 
 		name, _ := context.GetQuery("name")
 
